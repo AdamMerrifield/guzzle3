@@ -160,6 +160,15 @@ class Response extends AbstractMessage implements \Serializable
         return $this->getMessage();
     }
 
+    public function __serialize(): array
+    {
+        return array(
+            'status'  => $this->statusCode,
+            'body'    => (string) $this->body,
+            'headers' => $this->headers->toArray()
+        );
+    }
+
     public function serialize()
     {
         return json_encode(array(
@@ -167,6 +176,12 @@ class Response extends AbstractMessage implements \Serializable
             'body'    => (string) $this->body,
             'headers' => $this->headers->toArray()
         ));
+    }
+
+    public function __unserialize($serialize): void
+    {
+        $data = json_decode($serialize, true);
+        $this->__construct($data['status'], $data['headers'], $data['body']);
     }
 
     public function unserialize($serialize)

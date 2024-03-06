@@ -20,7 +20,7 @@ class Event extends SymfonyEvent implements ToArrayInterface, \ArrayAccess, \Ite
         $this->context = $context;
     }
 
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->context);
     }
@@ -30,17 +30,17 @@ class Event extends SymfonyEvent implements ToArrayInterface, \ArrayAccess, \Ite
         return isset($this->context[$offset]) ? $this->context[$offset] : null;
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->context[$offset] = $value;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->context[$offset]);
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->context[$offset]);
     }

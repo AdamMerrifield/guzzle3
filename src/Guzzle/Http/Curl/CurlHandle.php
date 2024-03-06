@@ -22,7 +22,7 @@ class CurlHandle
     /** @var Collection Curl options */
     protected $options;
 
-    /** @var resource Curl resource handle */
+    /** @var \CurlHandle Curl resource handle */
     protected $handle;
 
     /** @var int CURLE_* error */
@@ -371,7 +371,7 @@ class CurlHandle
     /**
      * Get the wrapped curl handle
      *
-     * @return resource|null Returns the cURL handle or null if it was closed
+     * @return \CurlHandle|null Returns the cURL handle or null if it was closed
      */
     public function getHandle()
     {

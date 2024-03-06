@@ -15,7 +15,7 @@ use Guzzle\Http\Exception\RequestException;
  */
 class CurlMulti extends AbstractHasDispatcher implements CurlMultiInterface
 {
-    /** @var resource cURL multi handle. */
+    /** @var \CurlMultiHandle cURL multi handle. */
     protected $multiHandle;
 
     /** @var array Attached {@see RequestInterface} objects. */
@@ -118,7 +118,7 @@ class CurlMulti extends AbstractHasDispatcher implements CurlMultiInterface
         }
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->requests);
     }
